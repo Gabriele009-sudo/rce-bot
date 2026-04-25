@@ -116,7 +116,11 @@ while True:
 
         save_seen(seen)
 
-        time.sleep(120)
+        if time.time() - last_notify >= 600:
+            if not found_new:
+                send_telegram("⏳ Ancora niente nuove offerte...")
+            last_notify = time.time()
+            time.sleep(120)
 
     except Exception as e:
         print("Errore:", e)
