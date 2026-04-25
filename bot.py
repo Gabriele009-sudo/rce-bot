@@ -6,7 +6,7 @@ import json
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 CHAT_ID = os.getenv("CHAT_ID")
-send_telegram("🔥 TEST: bot ancora vivo")
+
 
 # 🎯 OBIETTIVI DA MONITORARE
 TARGETS = [
@@ -91,6 +91,8 @@ def format_message(target_name, offer):
     )
 
     return msg
+
+send_telegram("🔥 TEST: bot ancora vivo")
 
 seen = load_seen()
 last_notify = time.time()
