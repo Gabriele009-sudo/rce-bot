@@ -14,6 +14,11 @@ TARGETS = [
         "name": "Tamron 70-300",
         "url": "https://www.rcefoto.com/scheda-prodotto/tamron-70-300mm-f4-5-6-3-di-iii-rxd/",
         "max_price": 300
+    },
+    {
+        "name": "Sigma 60-600",
+        "url": "https://www.rcefoto.com/scheda-prodotto/sigma-60-600mm-f4-5-6-3-dg-dn-os-s-2/",
+        "max_price": 2000
     }
 ]
 
