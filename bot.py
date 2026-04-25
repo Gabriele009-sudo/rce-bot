@@ -91,28 +91,27 @@ def format_message(target_name, offer):
 
     return msg
 
-
 seen = load_seen()
-
-print("🔥 BOT RCE MULTI-OBIETTIVO AVVIATO")
+last_notify = time.time()
 
 while True:
     try:
-        for target in TARGETS:
-            offers = get_offers(target["url"])
+        offers = get_offers(TARGETS[0]["url"])
 
-            for offer in offers:
-                key = offer["link"]
+        found_new = False
 
-                # filtro prezzo intelligente
-                if offer["price"] and offer["price"] > target["max_price"]:
-                    continue
+        for offer in offers:
+            key = offer["link"]
 
-                if key not in seen:
-                    seen.add(key)
+            if offer["price"] and offer["price"] > TARGETS[0]["max_price"]:
+                continue
 
-                    msg = format_message(target["name"], offer)
-                    send_telegram(msg)
+            if key not in seen:
+                seen.add(key)
+                found_new = True
+
+                msg = format_message(TARGETS[0]["name"], offer)
+                send_telegram(msg)
 
         save_seen(seen)
 
@@ -120,7 +119,8 @@ while True:
             if not found_new:
                 send_telegram("⏳ Ancora niente nuove offerte...")
             last_notify = time.time()
-            time.sleep(120)
+
+        time.sleep(120)
 
     except Exception as e:
         print("Errore:", e)
